@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface ErrorMessageProps {
-  message: string;
-  onRetry: () => void;
-}
-
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ message, onRetry }) => {
+const ErrorMessage = ({ message, onRetry }) => {
   return (
     <div className="bg-red-900/50 border border-red-700 text-red-200 px-4 py-3 rounded-lg relative text-center" role="alert">
       <strong className="font-bold block mb-2">오류가 발생했습니다</strong>

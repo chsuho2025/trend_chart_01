@@ -1,13 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import type { RankHistory } from '../types';
 
-interface RankChartProps {
-  data: RankHistory[];
-}
-
-const RankChart: React.FC<RankChartProps> = ({ data = [] }) => {
-  const pathRef = useRef<SVGPathElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+const RankChart = ({ data = [] }) => {
+  const pathRef = useRef(null);
+  const containerRef = useRef(null);
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
@@ -49,8 +44,8 @@ const RankChart: React.FC<RankChartProps> = ({ data = [] }) => {
     const minRank = 1;
     const maxRank = 20;
 
-    const getX = (index: number) => padding.left + (index / (chartData.length - 1)) * chartWidth;
-    const getY = (rank: number) => padding.top + ((rank - minRank) / (maxRank - minRank)) * chartHeight;
+    const getX = (index) => padding.left + (index / (chartData.length - 1)) * chartWidth;
+    const getY = (rank) => padding.top + ((rank - minRank) / (maxRank - minRank)) * chartHeight;
 
     const linePath = chartData.reduce((path, point, i) => {
       const isValidRank = point.rank > 0 && point.rank <= 20;
@@ -65,7 +60,7 @@ const RankChart: React.FC<RankChartProps> = ({ data = [] }) => {
       return path;
     }, '');
       
-    const getFormattedDate = (dateStr: string) => {
+    const getFormattedDate = (dateStr) => {
         const date = new Date(dateStr);
         return `${date.getMonth() + 1}/${date.getDate()}`;
     }
