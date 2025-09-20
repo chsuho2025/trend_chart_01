@@ -1,14 +1,17 @@
 import React from 'react';
-import type { ProcessedSong } from '../types';
 import ChartItem from './ChartItem';
 
-interface MusicChartProps {
-  songs: ProcessedSong[];
-  expandedRank: number | null;
-  onToggleExpand: (rank: number) => void;
-}
+const MusicChart = ({ songs, expandedRank, onToggleExpand }) => {
+  if (!songs || songs.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <div className="text-gray-400 text-lg">
+          차트 데이터를 불러오는 중...
+        </div>
+      </div>
+    );
+  }
 
-const MusicChart: React.FC<MusicChartProps> = ({ songs, expandedRank, onToggleExpand }) => {
   return (
     <div className="space-y-2">
       {songs.map((song) => (
